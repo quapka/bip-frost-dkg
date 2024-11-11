@@ -160,7 +160,7 @@ While warnings can be presented to users in this case, users tend to misundersta
 Even in distributed systems with strict liveness requirements, e.g., a system run by a large federation of nodes of which a majority is trusted, what is typically necessary for the liveness of the system is the continued ability to *produce signatures*.
 However, the setup of keys is typically performed in a one-time ceremony at the inception of the system (and possibly repeated in large time intervals, e.g., every few months).
 In other words, what is primarily required to ensure liveness in these applications is a robust signing protocol
-(and a solution for FROST exists [[RRJSS22](https://eprint.iacr.org/2022/550)], and not a robust DKG protocol.
+(and a solution for FROST exists [[RRJSS22](https://eprint.iacr.org/2022/550)]), and not a robust DKG protocol.
 
 ### Structure of this Document
 
