@@ -337,6 +337,7 @@ This means that the DKG session was successful, and the resulting threshold publ
 who can use it, e.g., by sending funds to some Bitcoin address derived from it.
 
 More formally, Eq must fulfill the following properties [[CGRS23](https://eprint.iacr.org/2023/899)]:
+
  - **Integrity:** If Eq returns successfully to some honest participant, then for every pair of input values `eq_input` and `eq_input'` provided by two honest participants, we have `eq_input = eq_input'`.
  - **Conditional Agreement:** Assuming all messages are delivered eventually, if Eq returns successfully to some honest participant, then Eq will eventually return successfully to all honest participants.
 
@@ -546,6 +547,7 @@ Some participants, the coordinator, and all network links may be malicious, i.e.
 We expect ChillDKG to provide the following informal security goals when it is used to set up keys for the FROST threshold signature scheme.
 
 If a participant deems a protocol session successful (see above), then this participant is assured that:
+
  - A coalition of at most `t - 1` malicious participants and a malicious coordinator cannot forge a signature under the returned threshold public key on any message `m` for which no signing session with at least one honest participant was initiated. (Unforgeability)[^unforgeability-formal]
  - All honest participants who deem the protocol session successful will have correct and consistent protocol outputs.
    In particular, they agree on the threshold public key, the list of public shares, and the recovery data.
