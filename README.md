@@ -672,7 +672,7 @@ A `SessionParams` tuple holds the common parameters of a DKG session.
 def params_id(params: SessionParams) -> bytes
 ```
 
-Returns the parameters ID, a unique representation of the`SessionParams`.
+Returns the parameters ID, a unique representation of the `SessionParams`.
 
 In the common scenario that the participants obtain host public keys from
 the other participants over channels that do not provide end-to-end
