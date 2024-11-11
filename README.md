@@ -226,7 +226,10 @@ Our variant of the SimplPedPop protocol then works as follows:
     which are simply concatenated (because the participants will need them to verify the proofs of possession):
 
     ```
-    sum_coms_to_nonconst_terms = (coms[0][1] + ... + coms[n-1][1], ..., coms[0][t-1] + ... + coms[n-1][t-1])
+    sum_coms_to_nonconst_terms = (
+        coms[0][1] + ... + coms[n-1][1], ...,
+        coms[0][t-1] + ... + coms[n-1][t-1]
+    )
     coms_to_secrets = (coms[0][0], ..., com[n-1][0])
     ```
 
@@ -245,7 +248,8 @@ Our variant of the SimplPedPop protocol then works as follows:
     Participant `i` computes the public share of every participant `j` as follows:
 
     ```
-    pubshares[j] = (j+1)^0 * sum_coms[0] + ... + (j+1)^(t-1) * sum_coms[t-1]
+    pubshares[j] = (j+1)^0 * sum_coms[0] + ...
+        + (j+1)^(t-1) * sum_coms[t-1]
     ```
 
     Let `secshare` be the sum of VSS shares privately obtained from each participant.
@@ -570,7 +574,7 @@ The coordinator invokes coordinator_step1 and sends the returned cmsg1 to the pa
 The participant invokes participant_step2 and sends the returned pmsg2 to the coordinator.
 The coordinator invokes coordinator_finalize and sends the returned cmsg2 to the participant.
 The participant invokes participant_finalize, which ends the second phase.
-](images/chilldkg-sequence.png "ChillDKG")
+](images/chilldkg-sequence.png "ChillDKG"){ width=250px }
 
 A participant can run multiple sessions with the same hostseckey, provided that the session state as output from any of the "step" functions is not reused.
 Multiple sessions may be run concurrently.
@@ -719,7 +723,11 @@ Holds the outputs of a DKG session.
 #### participant\_step1
 
 ```python
-def participant_step1(hostseckey: bytes, params: SessionParams, random: bytes) -> Tuple[ParticipantState1, ParticipantMsg1]
+def participant_step1(
+    hostseckey: bytes,
+    params: SessionParams,
+    random: bytes
+) -> Tuple[ParticipantState1, ParticipantMsg1]
 ```
 
 Perform a participant's first step of a ChillDKG session.
@@ -754,7 +762,11 @@ Perform a participant's first step of a ChillDKG session.
 #### participant\_step2
 
 ```python
-def participant_step2(hostseckey: bytes, state1: ParticipantState1, cmsg1: CoordinatorMsg1) -> Tuple[ParticipantState2, ParticipantMsg2]
+def participant_step2(
+    hostseckey: bytes,
+    state1: ParticipantState1,
+    cmsg1: CoordinatorMsg1
+) -> Tuple[ParticipantState2, ParticipantMsg2]
 ```
 
 Perform a participant's second step of a ChillDKG session.
@@ -794,7 +806,10 @@ Perform a participant's second step of a ChillDKG session.
 #### participant\_finalize
 
 ```python
-def participant_finalize(state2: ParticipantState2, cmsg2: CoordinatorMsg2) -> Tuple[DKGOutput, RecoveryData]
+def participant_finalize(
+    state2: ParticipantState2,
+    cmsg2: CoordinatorMsg2
+) -> Tuple[DKGOutput, RecoveryData]
 ```
 
 Perform a participant's final step of a ChillDKG session.
@@ -837,7 +852,10 @@ of the success of the DKG session by presenting recovery data to us.
 #### coordinator\_step1
 
 ```python
-def coordinator_step1(pmsgs1: List[ParticipantMsg1], params: SessionParams) -> Tuple[CoordinatorState, CoordinatorMsg1]
+def coordinator_step1(
+    pmsgs1: List[ParticipantMsg1],
+    params: SessionParams
+) -> Tuple[CoordinatorState, CoordinatorMsg1]
 ```
 
 Perform the coordinator's first step of a ChillDKG session.
@@ -867,7 +885,10 @@ Perform the coordinator's first step of a ChillDKG session.
 #### coordinator\_finalize
 
 ```python
-def coordinator_finalize(state: CoordinatorState, pmsgs2: List[ParticipantMsg2]) -> Tuple[CoordinatorMsg2, DKGOutput, RecoveryData]
+def coordinator_finalize(
+    state: CoordinatorState,
+    pmsgs2: List[ParticipantMsg2]
+) -> Tuple[CoordinatorMsg2, DKGOutput, RecoveryData]
 ```
 
 Perform the coordinator's final step of a ChillDKG session.
@@ -899,7 +920,10 @@ Perform the coordinator's final step of a ChillDKG session.
 #### recover
 
 ```python
-def recover(hostseckey: Optional[bytes], recovery_data: RecoveryData) -> Tuple[DKGOutput, SessionParams]
+def recover(
+    hostseckey: Optional[bytes],
+    recovery_data: RecoveryData
+) -> Tuple[DKGOutput, SessionParams]
 ```
 
 Recover the DKG output of a session from the hostseckey and recovery data.
